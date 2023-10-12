@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            //run script once all the page/DOM is loaded
+            document.addEventListener('DOMContentLoaded', function(){
+                //when correct answer is selected, change button green
+                let correct = document.querySelector('.correct');
+                //this will select the one and only element that has class name of correct. storing in variable correct
+                correct.addEventListener('click', function(){
+                    document.querySelector('#b1').style.backgroundColor = 'black';
+                    document.querySelector('#b2').style.backgroundColor = 'black';
+                    document.querySelector('#b3').style.backgroundColor = 'black';
+                    correct.style.backgroundColor = 'green';
+                    document.querySelector('#feedback1').innerHTML = 'Correct!';
+                    //for this querySelector, it finds you the element with the id of feedback1 and update innerHTML to Correct
+                });
+
+                let incorrects = document.querySelectorAll('.incorrect');
+                //returns an array of all elements with class of incorrect. . here refers to the class of incorrect
+                for (let i = 0; i<incorrects.length;i++){
+                    incorrects[i].addEventListener('click', function(){
+                        document.querySelector('#b1').style.backgroundColor = 'black';
+                        document.querySelector('#b2').style.backgroundColor = 'black';
+                        document.querySelector('#b3').style.backgroundColor = 'black';
+                        incorrects[i].style.backgroundColor = 'red';
+                        document.querySelector('#feedback1').innerHTML = 'Incorrect';
+                    });
+                }
+
+                document.querySelector('#check').addEventListener('click', function(){
+                    let input = document.querySelector('input');
+                    //this selector selects the element in the tags input
+                    if(input.value === '2'){
+                        input.style.backgroundColor = 'green';
+                        document.querySelector('#feedback2').innerHTML = 'Correct!';
+                    } else{
+                        input.style.backgroundColor = 'red';
+                        document.querySelector('#feedback2').innerHTML = 'Incorrect';
+                    }
+                });
+            });
+            // TODO: Add code to check answers to questions
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>
+                    What is the population of Singapore
+                </h3>
+                <button id = "b1" class="incorrect" type="button">4 million </button>
+                <button id = "b2" class="incorrect" type="button">5 million </button>
+                <button id = "b3" class="correct" type="button">5.5 million </button>
+
+                <p id="feedback1"></p>
+
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>
+                    What is 1+1
+                </h3>
+                    <input type="text" id="input"></input>
+                    <button id="check">Check Answer</button>
+                    <p id="feedback2"></p>
+                </div>
+
+
+
+
+                <!-- TODO: Add free response question here -->  
+            </div>
+        </div>
+    </body>
+</html>
