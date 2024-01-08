@@ -55,15 +55,25 @@ export default function App() {
     }, [currentNote]) 
 
     
-    React.useEffect(()=>{
-        const timeoutId = setTimeout(()=>{
-            if(tempNoteText !== currentNote.body){
-                updateNote(tempNoteText)
-        }}, 500) 
-        return () => clearTimeout(timeoutId)
-    }, [tempNoteText])
+    // React.useEffect(()=>{
+    //     const timeoutId = setTimeout(()=>{
+    //         if(tempNoteText !== currentNote.body){
+    //             updateNote(tempNoteText)
+    //     }}, 500) 
+    //     return () => clearTimeout(timeoutId)
+    // }, [tempNoteText])
 
-
+    React.useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            // Check if currentNote is defined before accessing its properties
+            if (currentNote && tempNoteText !== currentNote.body) {
+                updateNote(tempNoteText);
+            }
+        }, 500); 
+    
+        return () => clearTimeout(timeoutId);
+    }, [tempNoteText, currentNote]); // Include currentNote in the dependency array
+    
 
 
     async function createNewNote() {
