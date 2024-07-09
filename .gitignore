@@ -1,0 +1,7 @@
+
+*.pyc
+/nika/linkedin-bot
+/nika/planetgpt
+/nika/extract_gee
+test.py
+test.py
